@@ -62,6 +62,52 @@
     line-height: 40px;
 }
 
+._damage
+{
+    visibility: visible;
+    color: rgb(0,0,0);
+    font-family: FFont;
+    font-size: 35px;
+    position: absolute;
+    left: 200px;
+    top: 125px;
+    text-align: left;
+    line-height: 25px;
+}
+
+._trailer
+{
+    visibility: visible;
+    color: rgb(0,0,0);
+    font-family: FFont;
+    font-size: 35px;
+    position: absolute;
+    left: 200px;
+    top: 160px;
+    text-align: left;
+    line-height: 25px;
+}
+
+._cdmg {
+	background-image: url("images/truck.png");
+	background-size: contain;
+	position: absolute;
+	left: 150px;
+	top: 125px;
+	width: 40px;
+	height: 25px;
+}
+
+._ctrl {
+	background-image: url("images/trailer.png");
+	background-size: contain;
+	position: absolute;
+	left: 150px;
+	top: 160px;
+	width: 40px;
+	height: 25px;
+}
+
 ._rpm {
 	background-image: url("images/rpmbar.png");
 	position: absolute;
@@ -70,7 +116,6 @@
 	width: 430px;
 	height: 15px;
 }
-
 ._fuel {
 	background-image: url("images/rpmbar.png");
 	position: absolute;

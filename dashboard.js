@@ -30,9 +30,17 @@ Funbit.Ets.Telemetry.Dashboard.prototype.filter = function (data, utils) {
 	// other examples:
 	data.truck.rpm = data.truck.engineRpm/data.truck.engineRpmMax;
 	data.truck.rpm > 1?data.truck.rpm=1:data.truck.rpm=data.truck.rpm;
+	
 	var nextRestStopTimeDate = new Date(data.game.nextRestStopTime);
 	data.game.restHours = nextRestStopTimeDate.getUTCHours();
 	data.game.restMinutes = nextRestStopTimeDate.getUTCMinutes();
+	
+	data.truck.damage = Math.max(data.truck.wearEngine,data.truck.wearTransmission,data.truck.wearCabin,data.truck.wearChassis,data.truck.wearWheels);
+	data.truck.damage = (1-data.truck.damage)*100;
+	data.trailer.damage = (1-data.trailer.wear)*100;
+
+	data.color = (utils.formatFloat(data.truck.speed ,0) > data.navigation.speedLimit) ? '#FF0000' : '#000000';
+
 	// convert kg to t
 	data.trailer.mass = (data.trailer.mass / 1000.0) + 't';
 	// format odometer data as: 00000.0
@@ -50,6 +58,7 @@ Funbit.Ets.Telemetry.Dashboard.prototype.render = function (data, utils) {
 	$('._clutch').height(data.truck.gameClutch * 110);
 	$('._brake').height(data.truck.gameBrake * 110);
 	$('._throttle').height(data.truck.gameThrottle * 110);
+	$('.truck-speed').css('color',data.color);
 	data.truck.rpm>=0.9?$('._shift').show():$('._shift').hide();
 	//
 	// data - same data object as in the filter function
